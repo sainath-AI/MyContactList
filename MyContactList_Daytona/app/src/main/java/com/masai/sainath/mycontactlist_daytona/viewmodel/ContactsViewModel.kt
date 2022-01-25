@@ -1,4 +1,36 @@
 package com.masai.sainath.mycontactlist_daytona.viewmodel
 
-class ContactsViewModel {
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import com.masai.sainath.mycontactlist_daytona.database.ContactsDatabase
+import com.masai.sainath.mycontactlist_daytona.model.ContactEntity
+import com.masai.sainath.mycontactlist_daytona.repo.ContactsRepo
+
+class ContactsViewModel(application: Application): AndroidViewModel(application) {
+
+
+
+    private val repository: ContactsRepo
+
+    init {
+        val dao= ContactsDatabase.getDatabase(application).getContactsDao()
+        repository= ContactsRepo(dao)
+    }
+
+    fun addNotes(contacts:ContactEntity){
+        repository.inserNotes(contacts)
+    }
+    fun getContacts(): LiveData<List<ContactEntity>> = repository.getAllContacts()
+
+
+
+
+    fun deleteNotes(contacts:ContactEntity){
+        repository.deleteNotes(contacts)
+    }
+    fun updateNotes(contacts:ContactEntity){
+        repository.updateNotes(contacts)
+
+    }
 }

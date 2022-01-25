@@ -5,7 +5,7 @@ import com.masai.sainath.mycontactlist_daytona.dao.ContactDao
 import com.masai.sainath.mycontactlist_daytona.model.ContactEntity
 
 class ContactsRepo(val contactsDao:ContactDao) {
-    fun getAllNotes(): LiveData<List<ContactEntity>> = contactsDao.getContacts()
+    fun getAllContacts(): LiveData<List<ContactEntity>> = contactsDao.getContacts()
 
 
     fun inserNotes(contacts: ContactEntity){
