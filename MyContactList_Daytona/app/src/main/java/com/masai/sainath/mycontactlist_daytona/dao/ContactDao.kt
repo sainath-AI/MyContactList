@@ -12,9 +12,10 @@ interface ContactDao {
     @Query("Select * from contact")
     fun getContacts(): LiveData<List<ContactEntity>>
 
-    @Update()
+    @Update
     fun UpdateContacts(contactEntity: ContactEntity)
 
-    @Delete()
-    fun DeleteContacts(contactEntity: ContactEntity)
+
+    @Query("DELETE FROM Contact WHERE id=:id")
+    fun DeleteContacts(id: Int)
 }

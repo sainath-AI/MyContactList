@@ -26,11 +26,11 @@ class ContactsViewModel(application: Application): AndroidViewModel(application)
 
 
 
-    fun deleteContacts(contacts:ContactEntity){
-        repository.deleteNotes(contacts)
+    fun deleteContacts(id:Int){
+        repository.deleteNotes(id)
     }
     fun updateContacts(contacts:ContactEntity){
-        repository.updateNotes(contacts)
+        repository.updateContacts(contacts)
 
     }
 }

@@ -28,6 +28,7 @@
 
             />
 
+
         <TextView
             android:id="@+id/ContactName"
             android:layout_width="wrap_content"
@@ -39,13 +40,22 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/delete"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                />
+        </LinearLayout>
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/delete"
-           android:layout_marginStart="170dp"
-            />
+
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout

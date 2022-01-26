@@ -1,21 +1,31 @@
 package com.masai.sainath.mycontactlist_daytona.ui
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
 import com.masai.sainath.mycontactlist_daytona.R
 import com.masai.sainath.mycontactlist_daytona.databinding.ActivityDetailsContactsBinding
 import com.masai.sainath.mycontactlist_daytona.model.ContactEntity
 import com.masai.sainath.mycontactlist_daytona.viewmodel.ContactsViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.*
 
 class DetailsContacts : AppCompatActivity() {
     lateinit var binding: ActivityDetailsContactsBinding
     val viewModel: ContactsViewModel by viewModels()
+   // lateinit var contactEntity: ContactEntity
 
 
     @SuppressLint("SetTextI18n")
@@ -35,29 +45,86 @@ class DetailsContacts : AppCompatActivity() {
         binding.phNumber.setText(PHNo)
 
         binding.btnSave.setOnClickListener {
-            val uFirstName=binding.firstname.text.toString()
-            val uLastName=binding.lastname.text.toString()
-            val uPhNo=binding.phNumber.text.toString()
-            UpdateContacts(uFirstName,uLastName,uPhNo)
+            val firstName: String = binding.firstname.getText().toString()
+            val lastName: String = binding.lastname.getText().toString()
+            val PhNo: String = binding.phNumber.getText().toString()
+            UpdateContacts(firstName, lastName, PhNo)
         }
+        binding.delete.setOnClickListener {
+            val dialog = AlertDialog.Builder(this)
+            dialog.setMessage("are you sure want to delete this item")
+            dialog.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, _ ->
 
+                CoroutineScope(Dispatchers.IO).launch {
+                    viewModel.deleteContacts(iid)
+                }
+                val intent=Intent(this,MainActivity::class.java)
+                startActivity(intent)
+                dialog.dismiss()
 
-
-
+            })
+            dialog.setNegativeButton("No", DialogInterface.OnClickListener { dialog, _ ->
+                dialog.dismiss()
+            })
+            dialog.show()
+        }
 
 
 
     }
 
-    private fun UpdateContacts(uFirstName: String, uLastName: String, uPhNo: String) {
-        val updateContacts = ContactEntity(uFirstName,uLastName,uPhNo)
-        updateContacts.firstName = uFirstName
-        updateContacts.lastName = uLastName
-        updateContacts.PhNo = uPhNo
-        viewModel.updateContacts(updateContacts)
-        val snack = Snackbar.make(View(this@DetailsContacts),"Contacts Updated Successfully",Snackbar.LENGTH_LONG)
-        snack.show()
-        finish()
+    private fun UpdateContacts( firstName: String,  lastName:String,  PhNo:String) {
+
+        val updateContact = ContactEntity(firstName=firstName,lastName=lastName,PhNo=PhNo)
+        updateContact.firstName = firstName
+        updateContact.lastName = lastName
+        updateContact.PhNo = PhNo
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.updateContacts(updateContact)
+        }
+        if(isCredentialsValid()) {
+            val intent = Intent(this, MainActivity::class.java)
+                    Toast.makeText(this, "Contact updated successfully", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                    finish()
+        }
+
+
+//        val first= binding.firstname.text.toString()
+//        val last= binding.lastname.text.toString()
+//        val phNo= binding.phNumber.text.toString()
+//        val contactEntity= ContactEntity(firstName = first, lastName = last, PhNo =phNo)
+//                CoroutineScope(Dispatchers.IO).launch {
+//                    viewModel.updateContacts(contactEntity)
+//        }
+//        if(isCredentialsValid()) {
+//            val intent = Intent(this, MainActivity::class.java)
+//                    Toast.makeText(this, "Contact updated successfully", Toast.LENGTH_SHORT).show()
+//                    startActivity(intent)
+//                    finish()
+//        }
+
+
+        }
+
+    private fun isCredentialsValid(): Boolean {
+        var isDataValid = true
+        if (binding.firstname.text.toString().isEmpty()) {
+
+            isDataValid = false
+        }
+
+        if (binding.lastname.text.toString().isEmpty()) {
+
+            isDataValid = false
+
+        }
+
+        if (binding.phNumber.text.toString().isEmpty() ) {
+            isDataValid = false
+        }
+
+        return isDataValid
     }
 
 }

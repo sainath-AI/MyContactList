@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     val ListOfContacts=ArrayList<ContactEntity>()
     lateinit var adapter: ContactListAdapter
     val viewModel: ContactsViewModel by viewModels()
+    var oldMyNotes= arrayListOf<ContactEntity>()
+
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,12 +35,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        adapter= ContactListAdapter(this,ListOfContacts)
-        binding.RevCart.layoutManager=LinearLayoutManager(this)
-        binding.RevCart.adapter=adapter
 
-        viewModel.getContacts().observe(this, Observer{
-            if(it.isNotEmpty()){
+
+  val linearLayoutManager=LinearLayoutManager(this)
+        binding.RevCart.layoutManager=linearLayoutManager
+
+
+        viewModel.getContacts().observe(this, Observer{contactList ->
+            oldMyNotes=contactList as ArrayList<ContactEntity>
+            adapter=ContactListAdapter(this, contactList)
+            binding.RevCart.adapter = adapter
+
+
+
+            if(contactList.isNotEmpty()){
                 binding.RevCart.visibility= View.VISIBLE
                 binding.NoContacts.visibility=View.INVISIBLE
             }else
@@ -47,9 +57,9 @@ class MainActivity : AppCompatActivity() {
                 binding.NoContacts.visibility=View.VISIBLE
             }
 
-            val data =it
+//            val data =contactList
             ListOfContacts.clear()
-            ListOfContacts.addAll(data)
+            ListOfContacts.addAll(contactList)
             adapter.notifyDataSetChanged()
         })
 

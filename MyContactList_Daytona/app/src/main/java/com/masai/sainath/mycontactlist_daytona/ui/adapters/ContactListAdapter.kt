@@ -1,5 +1,6 @@
 package com.masai.sainath.mycontactlist_daytona.ui.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -27,10 +28,12 @@ class ContactListAdapter(val context: Context, var contactsLst:List<ContactEntit
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ContactListAdapter.ContactsViewHolder, position: Int) {
        val data=contactsLst[position]
         holder.binding.firstName.text=data.firstName
         holder.binding.LastName.text=data.lastName
+        holder.binding.CapsText.text= data.firstName.get(0).toString() + data.lastName.get(0).toString()
 
         holder.itemView.setOnClickListener {
             val intent= Intent(context,DetailsContacts::class.java)

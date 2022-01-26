@@ -1,53 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_margin="5dp"
     android:padding="5dp"
     android:orientation="horizontal"
     android:layout_height="wrap_content">
-    
-    <ImageView
+
+    <TextView
+        android:id="@+id/CapsText"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/proflier"
-        />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/redshape"
+        android:gravity="center"
+        android:text="AB"
+        android:textSize="27sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/firstName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="20dp"
-        android:textSize="21sp"
-        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/sans_regular"
         android:text="FirstName"
 
-        />
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/LastName"
+        app:layout_constraintStart_toEndOf="@+id/CapsText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
     <TextView
         android:id="@+id/LastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="7dp"
-        android:textSize="21sp"
-        android:textColor="@color/black"
+        android:layout_marginStart="18dp"
+
         android:fontFamily="@font/sans_regular"
         android:text="LastName"
-
-        />
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/firstName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.509" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/star"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="22dp"
+        android:src="@drawable/star"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/LastName"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        />
 
-    
-
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
