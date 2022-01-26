@@ -10,6 +10,8 @@ import com.masai.sainath.mycontactlist_daytona.dao.ContactDao
 abstract class ContactsDatabase : RoomDatabase() {
 
     abstract fun getContactsDao() : ContactDao
+
+
     companion object {
 
         private  var INSTANCE : ContactsDatabase?=null
