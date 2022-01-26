@@ -34,8 +34,30 @@
             />
     </LinearLayout>
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RevCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/NewContacts"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/sans_regular"
+        android:layout_marginBottom="180dp"
+        android:text="@string/no_contacts_available"
+        android:textSize="19sp"
+        android:visibility="visible" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/newNotes"
+        android:id="@+id/NewContacts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

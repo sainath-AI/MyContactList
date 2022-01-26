@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    android:padding="5dp"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+    
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/proflier"
+        />
+
+    <TextView
+        android:id="@+id/ContactNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:textSize="21sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/sans_regular"
+        android:text="Sample Name"
+
+        />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/star"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="150dp"
+
+        />
+
+    
+
+
+
+</LinearLayout>
