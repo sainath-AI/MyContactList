@@ -13,7 +13,7 @@
         />
 
     <TextView
-        android:id="@+id/ContactNames"
+        android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -21,7 +21,19 @@
         android:textSize="21sp"
         android:textColor="@color/black"
         android:fontFamily="@font/sans_regular"
-        android:text="Sample Name"
+        android:text="FirstName"
+
+        />
+    <TextView
+        android:id="@+id/LastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="7dp"
+        android:textSize="21sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/sans_regular"
+        android:text="LastName"
 
         />
 
@@ -30,7 +42,7 @@
         android:layout_height="30dp"
         android:src="@drawable/star"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="80dp"
 
         />
 

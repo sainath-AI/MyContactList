@@ -18,7 +18,7 @@ class ContactsViewModel(application: Application): AndroidViewModel(application)
         repository= ContactsRepo(dao)
     }
 
-    fun addNotes(contacts:ContactEntity){
+    fun addContacts(contacts:ContactEntity){
         repository.inserNotes(contacts)
     }
     fun getContacts(): LiveData<List<ContactEntity>> = repository.getAllContacts()
@@ -26,10 +26,10 @@ class ContactsViewModel(application: Application): AndroidViewModel(application)
 
 
 
-    fun deleteNotes(contacts:ContactEntity){
+    fun deleteContacts(contacts:ContactEntity){
         repository.deleteNotes(contacts)
     }
-    fun updateNotes(contacts:ContactEntity){
+    fun updateContacts(contacts:ContactEntity){
         repository.updateNotes(contacts)
 
     }
