@@ -9,4 +9,5 @@
     <string name="contacts">Contacts</string>
     <string name="todo">TODO</string>
     <string name="no_contacts_available">No Contacts Available</string>
+    <string name="ab">AB</string>
 </resources>

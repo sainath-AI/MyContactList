@@ -11,9 +11,11 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/redshape"
-        android:text="AB"
+        android:text="@string/ab"
         android:gravity="center"
-        android:textSize="26dp"
+        android:textSize="26sp"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
         android:src="@drawable/proflier"
         />
 

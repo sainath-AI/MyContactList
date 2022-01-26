@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.masai.sainath.mycontactlist_daytona.R
@@ -37,12 +38,15 @@ class InsertContacts : AppCompatActivity() {
         val lastName=binding.lastname.text.toString()
         val PhNo=binding.phNumber.text.toString()
 
-        val contactEntity=ContactEntity(firstName,lastName,PhNo)
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.addContacts(contactEntity)
-        }
+
         if(isCredentialsValid()) {
             val intent = Intent(this, MainActivity::class.java)
+            val contactEntity=ContactEntity(firstName,lastName,PhNo)
+            CoroutineScope(Dispatchers.IO).launch {
+                viewModel.addContacts(contactEntity)
+            }
+            Toast.makeText(this, "Contact Added successfully", Toast.LENGTH_SHORT).show()
+
             startActivity(intent)
             finish()
         }
@@ -52,17 +56,20 @@ class InsertContacts : AppCompatActivity() {
     private fun isCredentialsValid(): Boolean {
         var isDataValid = true
         if (binding.firstname.text.toString().isEmpty()) {
+            binding.firstname.setError("enter valid first name");
 
             isDataValid = false
         }
 
         if (binding.lastname.text.toString().isEmpty()) {
+            binding.lastname.setError("enter valid last name");
 
             isDataValid = false
 
         }
 
-        if (binding.phNumber.text.toString().isEmpty() ) {
+        if (binding.phNumber.text.toString().isEmpty()|| binding.phNumber.text?.length!=10 ) {
+            binding.phNumber.setError("enter valid 10 digit Ph Number");
             isDataValid = false
         }
 
