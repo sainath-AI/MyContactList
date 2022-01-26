@@ -7,37 +7,30 @@ import androidx.room.RoomDatabase
 import com.masai.sainath.mycontactlist_daytona.dao.ContactDao
 import com.masai.sainath.mycontactlist_daytona.model.ContactEntity
 
-@Database(entities = [ContactEntity::class], version = 1)
+@Database(entities = [ContactEntity::class], version = 2)
 abstract class ContactsDatabase : RoomDatabase() {
 
     abstract fun getContactsDao() : ContactDao
 
 
-    companion object {
+    companion object{
+        @Volatile
+        var INSTANCE: ContactsDatabase? = null
 
-        private  var INSTANCE : ContactsDatabase?=null
-
-
-        fun getDatabase(context : Context) : ContactsDatabase{
-
-
-            if(INSTANCE == null){
-
-                val builder = Room.databaseBuilder(
-                    context.applicationContext,ContactsDatabase::class.java,
-                    "contacts_db")
-
-                builder.fallbackToDestructiveMigration()
-                INSTANCE = builder.build()
-
-                return INSTANCE!!
-            }else{
-
-                return INSTANCE!!
+        fun getDatabaseInstances(context: Context): ContactsDatabase {
+            val tempInstance= INSTANCE
+            if(tempInstance!=null){
+                return tempInstance
             }
-
-
+            synchronized(this){
+                val roomDatabaseInstance= Room.databaseBuilder(context,
+                    ContactsDatabase::class.java,
+                    "Contacts").allowMainThreadQueries().build()
+                INSTANCE=roomDatabaseInstance
+                return  roomDatabaseInstance
+            }
         }
+
     }
 
 }

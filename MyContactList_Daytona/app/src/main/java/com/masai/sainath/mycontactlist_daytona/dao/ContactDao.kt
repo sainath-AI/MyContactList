@@ -12,7 +12,7 @@ interface ContactDao {
     @Query("Select * from contact")
     fun getContacts(): LiveData<List<ContactEntity>>
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun UpdateContacts(contactEntity: ContactEntity)
 
 

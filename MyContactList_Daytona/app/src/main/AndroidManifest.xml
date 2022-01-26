@@ -3,7 +3,6 @@
     package="com.masai.sainath.mycontactlist_daytona">
 
     <application
-        android:name=".di.BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

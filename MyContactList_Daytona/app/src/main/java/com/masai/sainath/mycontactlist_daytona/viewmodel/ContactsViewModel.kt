@@ -14,7 +14,7 @@ class ContactsViewModel(application: Application): AndroidViewModel(application)
     private val repository: ContactsRepo
 
     init {
-        val dao= ContactsDatabase.getDatabase(application).getContactsDao()
+        val dao= ContactsDatabase.getDatabaseInstances(application).getContactsDao()
         repository= ContactsRepo(dao)
     }
 
