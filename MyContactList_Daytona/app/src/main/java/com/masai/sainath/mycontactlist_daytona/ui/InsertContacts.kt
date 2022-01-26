@@ -41,11 +41,31 @@ class InsertContacts : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.addContacts(contactEntity)
         }
-        val intent=Intent(this,MainActivity::class.java)
-        startActivity(intent)
-        finish()
+        if(isCredentialsValid()) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
 
+    }
+    private fun isCredentialsValid(): Boolean {
+        var isDataValid = true
+        if (binding.firstname.text.toString().isEmpty()) {
 
+            isDataValid = false
+        }
+
+        if (binding.lastname.text.toString().isEmpty()) {
+
+            isDataValid = false
+
+        }
+
+        if (binding.phNumber.text.toString().isEmpty() ) {
+            isDataValid = false
+        }
+
+        return isDataValid
     }
 }
