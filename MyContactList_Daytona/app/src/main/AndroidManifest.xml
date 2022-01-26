@@ -11,6 +11,9 @@
         android:theme="@style/Theme.MyContactList_Daytona">
         <activity
             android:name=".ui.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
