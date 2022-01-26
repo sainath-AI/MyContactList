@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.masai.sainath.mycontactlist_daytona.dao.ContactDao
+import com.masai.sainath.mycontactlist_daytona.model.ContactEntity
 
-@Database(entities = [ContactsDatabase::class], version = 1)
+@Database(entities = [ContactEntity::class], version = 1)
 abstract class ContactsDatabase : RoomDatabase() {
 
     abstract fun getContactsDao() : ContactDao

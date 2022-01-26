@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MyContactList_Daytona</string>
+    <string name="contacts_database">Contacts DataBase</string>
+    <string name="add_contacts">Add Contacts</string>
+    <string name="add_contacts">Add Contacts</string>
+    <string name="contact_name">Contact Name</string>
+    <string name="update_contact">Update Contact</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="contacts">Contacts</string>
 </resources>

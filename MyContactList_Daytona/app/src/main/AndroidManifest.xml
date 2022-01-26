@@ -3,12 +3,19 @@
     package="com.masai.sainath.mycontactlist_daytona">
 
     <application
+        android:name=".di.BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyContactList_Daytona">
+        <activity
+            android:name=".ui.DetailsContacts"
+            android:exported="false" />
+        <activity
+            android:name=".ui.InsertContacts"
+            android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true" />
