@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     val ListOfContacts=ArrayList<ContactEntity>()
     lateinit var adapter: ContactListAdapter
-    val viewModel: ContactsViewModel by viewModels()
+    val viewModel: ContactsViewModel by viewModels() // initializing viewmodel, adapter, list of data,
     var oldMyNotes= arrayListOf<ContactEntity>()
 
 
@@ -36,6 +36,10 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        /**
+         * setting the layout manager , on how the item should be placed on screen
+         * and declaring the adapter to fill up data into screen
+         */
 
   val linearLayoutManager=LinearLayoutManager(this)
         binding.RevCart.layoutManager=linearLayoutManager

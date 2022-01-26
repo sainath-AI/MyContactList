@@ -7,9 +7,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * While implementing mvVm archietecture it is important to create a repo Class ,
+ * where all business logic will be written and
+ * seperating  Ui and Huge Asynchronous tasks help in not Freezing our application
+ */
+
 class ContactsRepo(val contactsDao:ContactDao) {
-
-
 
     fun getAllContacts(): LiveData<List<ContactEntity>> = contactsDao.getContacts()
 

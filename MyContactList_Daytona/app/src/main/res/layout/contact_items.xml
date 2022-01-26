@@ -13,8 +13,9 @@
         android:background="@drawable/redshape"
         android:text="@string/ab"
         android:gravity="center"
-        android:textSize="26sp"
+        android:textSize="24sp"
         android:textAllCaps="true"
+        android:fontFamily="@font/sans_regular"
         android:textColor="@color/white"
         android:src="@drawable/proflier"
         />

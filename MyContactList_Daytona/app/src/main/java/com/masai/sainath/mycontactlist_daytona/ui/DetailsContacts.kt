@@ -28,7 +28,7 @@ class DetailsContacts : AppCompatActivity() {
     lateinit var binding: ActivityDetailsContactsBinding
     lateinit var contactsDatabase: ContactsDatabase
     val viewModel: ContactsViewModel by viewModels()
-    lateinit var  contactDao : ContactDao
+//    lateinit var  contactDao : ContactDao
    // lateinit var contactEntity: ContactEntity
 
 
@@ -38,25 +38,34 @@ class DetailsContacts : AppCompatActivity() {
         binding= ActivityDetailsContactsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        contactsDatabase = ContactsDatabase.getDatabaseInstances(this)
-        contactDao = contactsDatabase.getContactsDao()
+//        contactsDatabase = ContactsDatabase.getDatabaseInstances(this)
+//        contactDao = contactsDatabase.getContactsDao()
 
+
+        /**
+         * here im retreving data from Adapter class , where i have used itemview ,
+         * an object from recyclerview used to navigate and pass data
+         */
         val iid=intent.getIntExtra("id",0)
         val First=intent.getStringExtra("firstname")
         val Last=intent.getStringExtra("lastname")
         val PHNo=intent.getStringExtra("phno")
 
+        /**
+         * setting the pre populated data into the editexts, or fields
+         */
         binding.ContactName.text= First.toString() +" "+ Last.toString()
         binding.firstname.setText(First)
         binding.lastname.setText(Last)
         binding.phNumber.setText(PHNo)
 
         binding.btnSave.setOnClickListener {
-//            val firstName: String = binding.firstname.getText().toString()
-//            val lastName: String = binding.lastname.getText().toString()
-//            val PhNo: String = binding.phNumber.getText().toString()
+
             UpdateContacts(it)
         }
+        /**
+         * for deleteing particular item from list , im using dialog box for confirmation and implementing delete functionality
+         */
         binding.delete.setOnClickListener {
             val dialog = AlertDialog.Builder(this)
             dialog.setMessage("are you sure want to delete this item")
@@ -81,6 +90,10 @@ class DetailsContacts : AppCompatActivity() {
 
 
     }
+
+    /**
+     * upadating the data in particular item and saving it into room database
+     */
 
     private fun UpdateContacts( it:View?) {
 
@@ -109,7 +122,6 @@ class DetailsContacts : AppCompatActivity() {
             val contactEntity= ContactEntity(firstName = first, lastName = last, PhNo =phNo)
             CoroutineScope(Dispatchers.IO).launch {
                 viewModel.updateContacts(contactEntity)
-//                    contactDao.UpdateContacts(contactEntity)
 
             }
                     Toast.makeText(this, "Contact updated successfully", Toast.LENGTH_SHORT).show()
@@ -119,6 +131,11 @@ class DetailsContacts : AppCompatActivity() {
 
 
         }
+
+    /**
+     * in This below Fuction credentails are Validated according to view functionality
+     * else if validation doesnt meet , Errors have been set.
+     */
 
     private fun isCredentialsValid(): Boolean {
         var isDataValid = true

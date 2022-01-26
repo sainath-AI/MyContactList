@@ -31,6 +31,9 @@ class InsertContacts : AppCompatActivity() {
         }
 
     }
+    /**
+     * Insering the data in particular item and saving it into room database
+     */
 
     private fun createContacts(it: View?) {
 
@@ -52,6 +55,10 @@ class InsertContacts : AppCompatActivity() {
         }
 
 
+        /**
+         * in This below Fuction credentails are Validated according to view functionality
+         * else if validation doesnt meet , Errors have been set.
+         */
     }
     private fun isCredentialsValid(): Boolean {
         var isDataValid = true

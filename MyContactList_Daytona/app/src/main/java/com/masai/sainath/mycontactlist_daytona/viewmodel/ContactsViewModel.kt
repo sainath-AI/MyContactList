@@ -9,8 +9,11 @@ import com.masai.sainath.mycontactlist_daytona.repo.ContactsRepo
 
 class ContactsViewModel(application: Application): AndroidViewModel(application) {
 
-
-
+    /**
+     * viewModel is another important archietectural componant from jetpack libraries
+     * viewmodel in mvVm helps in communication b/w Ui and Model classes in application
+     * also it is lifecycle aware , and data will not get destroyed if any changes in configaration or view/Activity is destroyed and recreted
+     */
     private val repository: ContactsRepo
 
     init {
@@ -22,9 +25,6 @@ class ContactsViewModel(application: Application): AndroidViewModel(application)
         repository.inserNotes(contacts)
     }
     fun getContacts(): LiveData<List<ContactEntity>> = repository.getAllContacts()
-
-
-
 
     fun deleteContacts(id:Int){
         repository.deleteNotes(id)
