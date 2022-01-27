@@ -43,4 +43,7 @@ interface ContactDao {
 
     @Query("DELETE FROM Contact WHERE id=:id")
     fun DeleteContacts(id: Int)
+
+    @Query("SELECT EXISTS (SELECT 1 FROM contact WHERE id=:id)")
+    fun isFavorite(id: Int): Int
 }
