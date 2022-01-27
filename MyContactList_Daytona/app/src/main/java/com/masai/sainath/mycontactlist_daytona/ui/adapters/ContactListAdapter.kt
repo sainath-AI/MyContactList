@@ -2,12 +2,16 @@ package com.masai.sainath.mycontactlist_daytona.ui.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.masai.sainath.mycontactlist_daytona.R
 import com.masai.sainath.mycontactlist_daytona.databinding.ContactItemsBinding
 import com.masai.sainath.mycontactlist_daytona.model.ContactEntity
 import com.masai.sainath.mycontactlist_daytona.ui.DetailsContacts
+import android.content.Context.MODE_PRIVATE
+
 
 class ContactListAdapter(val context: Context, var contactsLst:List<ContactEntity>):RecyclerView.Adapter<ContactListAdapter.ContactsViewHolder>() {
 
@@ -17,6 +21,8 @@ class ContactListAdapter(val context: Context, var contactsLst:List<ContactEntit
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactListAdapter.ContactsViewHolder {
+
+        loadData()
         return ContactsViewHolder(
             ContactItemsBinding.inflate(
                 LayoutInflater.from(
@@ -25,13 +31,31 @@ class ContactListAdapter(val context: Context, var contactsLst:List<ContactEntit
                 parent, false
             )
         )
+
+    }
+
+    private fun loadData(): Boolean {
+        val mPrefs: SharedPreferences = context.getSharedPreferences("favoutie", MODE_PRIVATE)
+
+        return mPrefs.getBoolean("favoutie", true)
     }
 
     override fun onBindViewHolder(holder: ContactListAdapter.ContactsViewHolder, position: Int) {
        val data=contactsLst[position]
         holder.binding.firstName.text=data.firstName
         holder.binding.LastName.text=data.lastName
-
+        holder.binding.star.setOnClickListener {
+            val mPrefs: SharedPreferences = context.getSharedPreferences("favoutie", MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = mPrefs.edit()
+            editor.putBoolean("favroute", true)
+            editor.apply()
+            if (loadData()) {
+                holder.binding.star.setImageResource(R.drawable.filledstar)
+            }else
+            {
+                holder.binding.star.setImageResource(R.drawable.star)
+            }
+        }
         holder.binding.CapsText.text= data.firstName.get(0).toString() + data.lastName.get(0).toString()
 
         holder.itemView.setOnClickListener {

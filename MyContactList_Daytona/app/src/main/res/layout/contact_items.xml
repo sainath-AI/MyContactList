@@ -50,6 +50,8 @@
         android:gravity="end"
         android:layout_gravity="center_vertical"
         android:layout_height="wrap_content">
+
+
         <ImageView
             android:id="@+id/star"
             android:layout_width="30dp"

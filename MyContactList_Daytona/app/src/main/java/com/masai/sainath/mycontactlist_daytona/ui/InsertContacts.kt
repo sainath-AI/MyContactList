@@ -37,6 +37,7 @@ class InsertContacts : AppCompatActivity() {
 
     private fun createContacts(it: View?) {
 
+
         val firstName=binding.firstname.text.toString()
         val lastName=binding.lastname.text.toString()
         val PhNo=binding.phNumber.text.toString()
